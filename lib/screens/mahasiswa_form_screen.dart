@@ -138,7 +138,27 @@ class _MahasiswaFormScreenState extends State<MahasiswaFormScreen> {
                 decoration: const InputDecoration(
                   labelText: 'Tanggal Lahir (opsional)',
                   hintText: 'YYYY-MM-DD',
+                  suffixIcon: Icon(Icons.calendar_today),
                 ),
+                readOnly: true,
+                onTap: () async {
+                  FocusScope.of(context).requestFocus(FocusNode());
+                  final picked = await showDatePicker(
+                    context: context,
+                    initialDate: _tanggalLahirC.text.isNotEmpty
+                        ? DateTime.tryParse(_tanggalLahirC.text) ??
+                              DateTime.now()
+                        : DateTime.now(),
+                    firstDate: DateTime(1970),
+                    lastDate: DateTime.now(),
+                  );
+                  if (picked != null) {
+                    _tanggalLahirC.text = picked.toIso8601String().substring(
+                      0,
+                      10,
+                    );
+                  }
+                },
                 keyboardType: TextInputType.datetime,
               ),
               const SizedBox(height: 20),
