@@ -5,6 +5,9 @@ class Mahasiswa {
   String prodi;
   String? alamat;
   int? angkatan;
+  String? email;
+  String? noTelepon;
+  String? tanggalLahir;
 
   Mahasiswa({
     this.id,
@@ -13,6 +16,9 @@ class Mahasiswa {
     required this.prodi,
     this.alamat,
     this.angkatan,
+    this.email,
+    this.noTelepon,
+    this.tanggalLahir,
   });
 
   factory Mahasiswa.fromMap(Map<String, dynamic> map) => Mahasiswa(
@@ -22,6 +28,9 @@ class Mahasiswa {
     prodi: map['prodi'] as String,
     alamat: map['alamat'] as String?,
     angkatan: map['angkatan'] as int?,
+    email: map['email'] as String?,
+    noTelepon: map['no_telepon'] as String?,
+    tanggalLahir: map['tanggal_lahir'] as String?,
   );
 
   Map<String, dynamic> toMap() => {
@@ -31,5 +40,8 @@ class Mahasiswa {
     'prodi': prodi,
     'alamat': alamat,
     'angkatan': angkatan,
+    'email': email,
+    'no_telepon': noTelepon,
+    'tanggal_lahir': tanggalLahir,
   };
 }

@@ -22,7 +22,7 @@ class DashboardScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset('assets/images/student.png', width: 240, height: 240),
-            const SizedBox(height: 30),
+            const SizedBox(height: 70),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24.0),
               child: Column(

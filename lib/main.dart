@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'screens/splash_screen.dart';
+import 'package:sqflite/sqflite.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final dbPath = await getDatabasesPath();
+  await deleteDatabase('$dbPath/kampusku.db');
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -12,10 +16,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Aplikasi KampusKu',
-      theme: ThemeData(
-        useMaterial3: true,
-        colorSchemeSeed: Colors.blue,
-      ),
+      theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.blue),
       home: const SplashScreen(),
       debugShowCheckedModeBanner: false,
     );

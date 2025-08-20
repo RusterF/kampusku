@@ -15,11 +15,7 @@ class DatabaseHelper {
     final dbPath = await getDatabasesPath();
     final path = p.join(dbPath, 'kampusku.db');
 
-    return await openDatabase(
-      path,
-      version: 1,
-      onCreate: _onCreate,
-    );
+    return await openDatabase(path, version: 1, onCreate: _onCreate);
   }
 
   FutureOr<void> _onCreate(Database db, int version) async {
@@ -30,7 +26,10 @@ class DatabaseHelper {
         nama TEXT NOT NULL,
         prodi TEXT NOT NULL,
         alamat TEXT,
-        angkatan INTEGER
+        angkatan INTEGER,
+        email TEXT,
+        no_telepon TEXT,
+        tanggal_lahir TEXT
       )
     ''');
 
@@ -41,6 +40,9 @@ class DatabaseHelper {
       'prodi': 'Informatika',
       'alamat': 'Jl. Kenanga 12',
       'angkatan': 2023,
+      'email': 'sinta.rahma@email.com',
+      'no_telepon': '081234567890',
+      'tanggal_lahir': '2005-08-20',
     });
   }
 
@@ -75,7 +77,12 @@ class DatabaseHelper {
 
   Future<int> updateMahasiswa(Mahasiswa mhs) async {
     final db = await database;
-    return await db.update('mahasiswa', mhs.toMap(), where: 'id = ?', whereArgs: [mhs.id]);
+    return await db.update(
+      'mahasiswa',
+      mhs.toMap(),
+      where: 'id = ?',
+      whereArgs: [mhs.id],
+    );
   }
 
   Future<int> deleteMahasiswa(int id) async {

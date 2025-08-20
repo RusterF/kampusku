@@ -17,6 +17,9 @@ class _MahasiswaFormScreenState extends State<MahasiswaFormScreen> {
   final _prodiC = TextEditingController();
   final _alamatC = TextEditingController();
   final _angkatanC = TextEditingController();
+  final _emailC = TextEditingController();
+  final _noTeleponC = TextEditingController();
+  final _tanggalLahirC = TextEditingController();
 
   final _db = DatabaseHelper.instance;
 
@@ -30,6 +33,9 @@ class _MahasiswaFormScreenState extends State<MahasiswaFormScreen> {
       _prodiC.text = e.prodi;
       _alamatC.text = e.alamat ?? '';
       _angkatanC.text = e.angkatan?.toString() ?? '';
+      _emailC.text = e.email ?? '';
+      _noTeleponC.text = e.noTelepon ?? '';
+      _tanggalLahirC.text = e.tanggalLahir ?? '';
     }
   }
 
@@ -43,6 +49,13 @@ class _MahasiswaFormScreenState extends State<MahasiswaFormScreen> {
       prodi: _prodiC.text.trim(),
       alamat: _alamatC.text.trim().isEmpty ? null : _alamatC.text.trim(),
       angkatan: angkatan,
+      email: _emailC.text.trim().isEmpty ? null : _emailC.text.trim(),
+      noTelepon: _noTeleponC.text.trim().isEmpty
+          ? null
+          : _noTeleponC.text.trim(),
+      tanggalLahir: _tanggalLahirC.text.trim().isEmpty
+          ? null
+          : _tanggalLahirC.text.trim(),
     );
 
     if (widget.existing == null) {
@@ -105,6 +118,28 @@ class _MahasiswaFormScreenState extends State<MahasiswaFormScreen> {
                   labelText: 'Angkatan (opsional)',
                 ),
                 keyboardType: TextInputType.number,
+              ),
+              TextFormField(
+                controller: _emailC,
+                decoration: const InputDecoration(
+                  labelText: 'Email (opsional)',
+                ),
+                keyboardType: TextInputType.emailAddress,
+              ),
+              TextFormField(
+                controller: _noTeleponC,
+                decoration: const InputDecoration(
+                  labelText: 'No. Telepon (opsional)',
+                ),
+                keyboardType: TextInputType.phone,
+              ),
+              TextFormField(
+                controller: _tanggalLahirC,
+                decoration: const InputDecoration(
+                  labelText: 'Tanggal Lahir (opsional)',
+                  hintText: 'YYYY-MM-DD',
+                ),
+                keyboardType: TextInputType.datetime,
               ),
               const SizedBox(height: 20),
               SizedBox(
